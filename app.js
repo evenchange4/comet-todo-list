@@ -30,7 +30,6 @@ app.configure( 'production', function (){
   app.set( 'view engine', 'ejs' );
   app.use( express.cookieParser());
   app.use( express.bodyParser());
-  app.use( routes.current_user );
   app.use( app.router );
   app.use( express.errorHandler());
 });
@@ -42,6 +41,9 @@ app.get( '/destroy/:id', routes.destroy );
 app.get( '/edit/:id', routes.edit );
 app.post( '/update/:id', routes.update );
 
-app.listen( 3001, '127.0.0.1', function (){
+app.listen( 1337, function (){
   console.log( 'Express server listening on port %d in %s mode', app.address().port, app.settings.env );
 });
+app.socket = require('./socket.io.server')(app);
+
+
