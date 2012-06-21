@@ -20,18 +20,25 @@ module.exports.index = function (cookie, cb) {
 };
 
 module.exports.create = function (cookie, content, cb) {
-  var newObj = {
-      user_id    : cookie.user_id,
-      content    : content,
-      updated_at : Date.now()
-  };
 
-  new Todo(
-    newObj
-  ).save( function ( err, todo, count ){
+  new Todo({
+    user_id    : cookie.user_id,
+    content    : content,
+    updated_at : Date.now()
+  }).save( function ( err, todo, count ){
     if( err ) cb(null);
 
-    cb(newObj);
+    cb(todo);
   });
 
+};
+
+module.exports.destory = function (cookie, id, cb) {
+  Todo.findById( id, function ( err, todo ){
+    todo.remove( function ( err, todo ){
+      if( err ) cb(null);
+
+      cb(todo);
+    });
+  });
 };
