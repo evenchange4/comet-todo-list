@@ -5,7 +5,9 @@
  * @version 2012/06/21
  */
 module.exports = function (app) {
-    var io = require('socket.io').listen(app);
+    var io = require('socket.io').listen(app),
+        collection = require('./collection'),
+        cookieParser = require('connect').utils.parseCookie;
 
     io.configure('production', function(){
       io.set('log level', 1);
@@ -20,7 +22,7 @@ module.exports = function (app) {
     });
 
     io.configure('development', function(){
-      io.set('log level', 2);
+      io.set('log level', 1);
 
       io.set('transports', [
         'websocket'
@@ -28,7 +30,16 @@ module.exports = function (app) {
     });
    
     io.sockets.on('connection', function (socket) {
-        console.log("welcome user login");        
+        var userCookie = cookieParser(socket.handshake.headers.cookie);
+        collection.index(userCookie, function (todos) {
+            socket.emit('index', todos); 
+        });
+
+        socket.on('create', function (data) {
+            collection.create(userCookie, data.content, function (todos) {
+                io.sockets.emit('create', todos);     
+            });
+        });
     });
 
     return io;
