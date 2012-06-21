@@ -40,6 +40,12 @@ module.exports = function (app) {
                 io.sockets.emit('create', todos);     
             });
         });
+
+        socket.on('destory', function (data) {
+            collection.destory(userCookie, data.id, function (todos) {
+                io.sockets.emit('destory', data);     
+            });    
+        });
     });
 
     return io;
