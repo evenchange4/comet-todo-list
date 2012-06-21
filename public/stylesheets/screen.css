@@ -251,3 +251,7 @@ html, body {
   position: relative;
   height: 48px;
 }
+.js-template {
+    display:none;
+}
+
