@@ -41,6 +41,12 @@ module.exports = function (app) {
             });
         });
 
+        socket.on('edit', function (data) {
+            collection.edit(userCookie, data, function (todos) {
+                io.sockets.emit('edit', todos);     
+            });    
+        });
+
         socket.on('destory', function (data) {
             collection.destory(userCookie, data.id, function (todos) {
                 io.sockets.emit('destory', data);     
