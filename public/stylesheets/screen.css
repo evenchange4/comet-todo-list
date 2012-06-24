@@ -251,6 +251,29 @@ html, body {
   position: relative;
   height: 48px;
 }
+#create {
+  width: 250px;
+  margin: 0 auto;
+}
+#create .bd {
+  padding: 10px 0;
+}
+#create .bd a {
+display: block;
+
+  padding: 3px 15px;
+  background: #fff;
+  border: 3px solid #000;
+  border-radius: 5px;
+  font-size: 210%;
+  text-align: center;
+  color: #c4c4c4;
+  text-decoration: none;
+}
+#create .bd a:hover {
+  background: #c4c4c4;
+  color: #fff;
+}
 .js-template {
     display:none;
 }
