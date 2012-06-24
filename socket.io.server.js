@@ -31,6 +31,11 @@ module.exports = function (app) {
    
     io.sockets.on('connection', function (socket) {
         var userCookie = cookieParser(socket.handshake.headers.cookie);
+        var url = socket.handshake.headers.referer.split('/').pop();
+
+        if (url != userCookie.room_id) {
+            return;
+        }
         collection.index(userCookie, function (todos) {
             socket.emit('index', todos); 
         });
