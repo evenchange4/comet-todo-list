@@ -16,5 +16,4 @@ var Hashlist = new Schema({
 mongoose.model( 'Todo', Todo );
 mongoose.model( 'Hashlist', Hashlist);
 
-//mongoose.connect( 'mongodb://clonn:1234@flame.mongohq.com:27061/todoclonn' );
 mongoose.connect( 'mongodb://localhost/express-todo' );
