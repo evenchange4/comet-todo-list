@@ -6,6 +6,9 @@
  */
 
 (function ($, io) {
+    if ( ! window.location.pathname.match('/room/')) {
+        return;
+    }
     var listTpl = $('#js-list-template').html();
     var editListTpl = $('#js-edit-list-template').html();
     var contentListTpl = $('#js-content-list-template').html();
@@ -13,7 +16,6 @@
 
     var socket = io.connect();
     socket.on('index', function (data) {
-        console.log(data);
     }); 
 
     socket.on('create', function (data) {
