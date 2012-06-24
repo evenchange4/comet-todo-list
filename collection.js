@@ -11,7 +11,7 @@ var utils    = require( 'connect' ).utils;
 
 module.exports.index = function (cookie, cb) {
   Todo.
-    find({ user_id : cookie.user_id }).
+    find({ room_id : cookie.room_id }).
     sort( 'updated_at', -1 ).
     run( function ( err, todos ){
       if( err ) cb(null);
@@ -21,7 +21,7 @@ module.exports.index = function (cookie, cb) {
 
 module.exports.create = function (cookie, content, cb) {
   new Todo({
-    user_id    : cookie.user_id,
+    room_id    : cookie.room_id,
     content    : content,
     updated_at : Date.now()
   }).save( function ( err, todo, count ){
