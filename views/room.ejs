@@ -1,0 +1,32 @@
+<h1 id="page-title"><%= title %> - <%= id %></h1>
+
+<div id="list">
+  <form action="/create" method="post" accept-charset="utf-8">
+    <div class="item-new">
+      <input class="input" type="text" name="content" />
+    </div>
+  </form>
+
+<% todos.forEach( function ( todo ){ %>
+  <div id="<%= todo._id %>" class="item">
+    <span class="update"><a class="update-link" href="/edit/<%= todo._id %>" title="Update this todo item"><%= todo.content %></a></span>
+    <a class="del-btn" href="/destroy/<%= todo._id %>" title="Delete this todo item">Delete</a>
+  </div>
+<% }); %>
+</div>
+
+<div id="js-list-template" class="js-template">
+  <div id="{{list-id}}" class="item">
+    <span class="update"><a class="update-link" href="/edit/{{list-id}}" title="Update this todo item">{{list-content}}</a></span>
+    <a class="del-btn" href="/destroy/{{list-id}}" title="Delete this todo item">Delete</a>
+  </div>
+</div>
+<div id="js-content-list-template" class="js-template">
+    <a class="update-link" href="/edit/{{list-id}}" title="Update this todo item">{{list-content}}</a>
+</div>
+<div id="js-edit-list-template" class="js-template">
+    <form class="update-form" action="/update/{{list-id}}" method="post" accept-charset="utf-8">
+      <input class="update-input" type="text" name="content" value="{{list-content}}" />
+      <input class="update-input" type="hidden" name="id" value="{{list-id}}" />
+    </form>
+</div>
