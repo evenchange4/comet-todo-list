@@ -24,7 +24,6 @@ module.exports = function (app) {
     io.configure('development', function(){
       io.set('log level', 1);
 
-:qa
       io.set('transports', [
         'websocket'
       ]);
