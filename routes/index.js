@@ -34,7 +34,7 @@ exports.room = function ( req, res, next ){
 };
 
 exports.create = function ( req, res, next ){
-  res.clearCookie('room_id');
+  //res.clearCookie('room_id');
   var uid = utils.uid(10);
 
   new Hashlist({
@@ -65,7 +65,7 @@ exports.current_room = function ( req, res, next ){
       return;
     }
     
-    res.cookie( 'room_id', uid, {path: '/'});
+    //res.cookie( 'room_id', uid, {path: '/'});
     next();
           
   });
